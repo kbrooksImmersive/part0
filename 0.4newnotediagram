@@ -1,8 +1,16 @@
 ```mermaid
 sequenceDiagram
+    actor user
     participant browser
     participant server
 
+    user->>browser: Input note information
+    browser->>server: POST note information to https://studies.cs.helsinki.fi/exampleapp/new_note
+    activate server
+    server-->>browser: Redirect /exampleapp/notes
+    deactivate server
+    Note right of browser: Server redirects browser to the notes page, reloading the notes with the newly enter data 
+    
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
     activate server
     server-->>browser: HTML document
