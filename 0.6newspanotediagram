@@ -1,0 +1,17 @@
+```mermaid
+sequenceDiagram
+    actor user
+    participant browser
+    participant server
+
+    user->>browser: Input note information
+    activate browser
+    Note over browser: JS creates the note and rerenders the notes list
+    browser->>server: POST note information to https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    deactivate browser
+    activate server
+    Note right of browser: Note information is included as JSON body of the request
+    server-->>browser: Return 201 Created
+    deactivate server
+    Note right of browser: Server 201 status code 'Created' confirming successful transaction
+```
